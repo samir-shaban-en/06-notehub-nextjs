@@ -1,10 +1,10 @@
-import NoteList from '@/componetns/Modal/Modal';
+import NoteList from '@/componetns/NoteList/NoteList';
 import Modal from '@/componetns/Modal/Modal';
 import NoteForm from '@/componetns/NoteForm/NoteForm';
 
 import SearchBox from '@/componetns/SearchBox/SearchBox';
-import Loader from '../Loader/Loader';
-import ErrorMessage from '../ErrorMessage/ErrorMessage.tsx';
+// import Loader from '../Loader/Loader';
+// import ErrorMessage from '../ErrorMessage/ErrorMessage.tsx';
 import Pagination from '@/componetns/Pagination/Pagination';
 import { fetchNotes } from '@/lib/api';
 
@@ -60,9 +60,9 @@ function App() {
           </button>
         </header>
       </div>
-      {isError && <ErrorMessage />}
+      {/* {isError && <ErrorMessage />}
 
-      {isLoading && <Loader />}
+      {isLoading && <Loader />} */}
 
       {data?.notes && <NoteList notes={data.notes} />}
 
