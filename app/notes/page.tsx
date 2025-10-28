@@ -5,7 +5,6 @@ import {
   dehydrate,
 } from '@tanstack/react-query';
 import NoteClient from './Notes.client';
-
 type NoteDetailsProps = {
   params: Promise<{ text: string; currentPage: number }>;
 };
