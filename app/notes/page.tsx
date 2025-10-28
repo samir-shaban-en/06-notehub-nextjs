@@ -1,3 +1,4 @@
+'use client';
 import NoteList from '@/componetns/NoteList/NoteList';
 import Modal from '@/componetns/Modal/Modal';
 import NoteForm from '@/componetns/NoteForm/NoteForm';
@@ -14,7 +15,7 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import { useState } from 'react';
 
-import css from './App.module.css';
+import css from './NotesPage.module.css';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,7 +23,7 @@ function App() {
 
   const [text, setText] = useState('');
 
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, error } = useQuery({
     queryKey: ['notes', currentPage, text],
     queryFn: () => fetchNotes(currentPage, text),
     placeholderData: keepPreviousData,
@@ -60,9 +61,7 @@ function App() {
           </button>
         </header>
       </div>
-      {/* {isError && <ErrorMessage />}
-
-      {isLoading && <Loader />} */}
+      {isError && <p>Could not fetch the list of notes. {error.message}</p>}
 
       {data?.notes && <NoteList notes={data.notes} />}
 

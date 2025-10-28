@@ -48,4 +48,13 @@ const deleteNote = async (noteId: string): Promise<Note> => {
   return res.data;
 };
 
-export { fetchNotes, createNote, deleteNote };
+const getSingleNote = async (noteId: string): Promise<Note> => {
+  const res = await axios.get<Note>(
+    `https://notehub-public.goit.study/api/notes/${noteId}`,
+    options
+  );
+
+  return res.data;
+};
+
+export { fetchNotes, createNote, deleteNote, getSingleNote };
