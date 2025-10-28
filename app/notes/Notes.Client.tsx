@@ -4,8 +4,7 @@ import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 
 import SearchBox from '@/components/SearchBox/SearchBox';
-// import Loader from '../Loader/Loader';
-// import ErrorMessage from '../ErrorMessage/ErrorMessage.tsx';
+
 import Pagination from '@/components/Pagination/Pagination';
 import { fetchNotes } from '@/lib/api';
 
@@ -17,7 +16,7 @@ import { useState } from 'react';
 
 import css from './NotesPage.module.css';
 
-function App() {
+function NoteClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -74,4 +73,4 @@ function App() {
   );
 }
 
-export default App;
+export default NoteClient;
