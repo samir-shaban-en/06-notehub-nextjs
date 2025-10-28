@@ -1,3 +1,4 @@
+'use client';
 const Loading = () => {
   <p>Loading, please wait...</p>;
 };
