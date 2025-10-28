@@ -16,7 +16,7 @@ import { useState } from 'react';
 
 import css from './NotesPage.module.css';
 
-function NoteClient() {
+function NotesClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -73,4 +73,4 @@ function NoteClient() {
   );
 }
 
-export default NoteClient;
+export default NotesClient;
