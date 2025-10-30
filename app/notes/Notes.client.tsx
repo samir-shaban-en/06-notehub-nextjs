@@ -15,7 +15,10 @@ import { useDebouncedCallback } from 'use-debounce';
 import { useState } from 'react';
 
 import css from './NotesPage.module.css';
-
+type NotesClientProps = {
+  currentPage: number;
+  text: string;
+};
 function NotesClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
