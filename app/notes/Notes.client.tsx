@@ -16,14 +16,14 @@ import { useState } from 'react';
 
 import css from './NotesPage.module.css';
 type NotesClientProps = {
-  currentPage: number;
-  text: string;
+  initialPage: number;
+  initialtext: string;
 };
-function NotesClient() {
+function NotesClient({ initialPage, initialtext }: NotesClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initialPage);
 
-  const [text, setText] = useState('');
+  const [text, setText] = useState(initialtext);
 
   const { data, isError, error } = useQuery({
     queryKey: ['notes', currentPage, text],
