@@ -17,17 +17,18 @@ import { useState } from 'react';
 import css from './NotesPage.module.css';
 type NotesClientProps = {
   initialPage: number;
-  initialtext: string;
+  initialText: string;
 };
-function NotesClient({ initialPage, initialtext }: NotesClientProps) {
+function NotesClient({ initialPage, initialText }: NotesClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(initialPage);
 
-  const [text, setText] = useState(initialtext);
+  const [text, setText] = useState(initialText);
+  const [searchQuery, setSearchQuery] = useState(initialText);
 
   const { data, isError, error } = useQuery({
-    queryKey: ['notes', currentPage, text],
-    queryFn: () => fetchNotes(currentPage, text),
+    queryKey: ['notes', currentPage, searchQuery],
+    queryFn: () => fetchNotes(currentPage, searchQuery),
     placeholderData: keepPreviousData,
   });
 
@@ -36,19 +37,22 @@ function NotesClient({ initialPage, initialtext }: NotesClientProps) {
 
   const totalPages = data?.totalPages ?? 0;
 
-  const handleChange = useDebouncedCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setText(event.target.value);
-      setCurrentPage(1);
-    },
-    1000
-  );
+  const handleChange = useDebouncedCallback((value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  }, 1000);
 
   return (
     <>
       <div className={css.app}>
         <header className={css.toolbar}>
-          <SearchBox onChange={handleChange} />
+          <SearchBox
+            onChange={(e) => {
+              setText(e.target.value);
+              handleChange(e.target.value);
+            }}
+            value={text}
+          />
 
           {totalPages > 0 && (
             <Pagination
